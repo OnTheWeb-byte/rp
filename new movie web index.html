@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineFlix Hub</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+    body, html {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #121212;
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+    cursor: none; /* Hide default cursor */
+}
+
+/* Header */
+.cineflix-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 15vh;
+    background: linear-gradient(135deg, #1c1c1e, #121212);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+}
+
+.cineflix-title {
+    font-size: 3rem; /* Reduced font size */
+    color: #FFD700;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px #FFD700, 0 0 20px #FF6347, 0 0 30px #00FFFF;
+    animation: pulse 2s infinite;
+}
+
+/* Heading Animation */
+@keyframes pulse {
+    0% {
+        text-shadow: 0 0 20px #FFD700, 0 0 30px #FF6347, 0 0 40px #00FFFF;
+    }
+    50% {
+        text-shadow: 0 0 40px #FFD700, 0 0 50px #FF6347, 0 0 60px #00FFFF;
+    }
+    100% {
+        text-shadow: 0 0 20px #FFD700, 0 0 30px #FF6347, 0 0 40px #00FFFF;
+    }
+}
+
+/* Movie Cards */
+.movies-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.movie-card {
+    width: 200px;
+    height: 350px;
+    background: #1c1c1e;
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+}
+
+.movie-card:hover {
+    transform: scale(1.1);
+    box-shadow: 0 15px 30px rgba(255, 215, 0, 0.5);
+}
+
+.movie-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.movie-card h3 {
+    margin: 10px 0;
+    color: #FFD700;
+    font-size: 1.2rem;
+}
+
+.movie-card p {
+    color: #ccc;
+    font-size: 0.9rem;
+    margin: 0 10px 10px;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 1rem;
+    background: #121212;
+    color: #fff;
+    font-size: 1rem;
+    border-top: 2px solid #FFD700;
+}
+
+/* Trailer Modal */
+.trailer-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.trailer-modal.active {
+    display: flex;
+}
+
+.modal-content {
+    position: relative;
+    width: 80%;
+    max-width: 800px;
+    background: #000;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.modal-content iframe {
+    width: 100%;
+    height: 450px;
+    border-radius: 10px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #FF0000;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+/* Custom Cursor */
+.cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 25px;
+    height: 25px;
+    background: linear-gradient(45deg, #FFD700, #FF6347, #00FFFF);
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    box-shadow: 0 0 10px #FFD700, 0 0 15px #FF6347;
+    animation: cursorPulse 2s infinite alternate;
+}
+
+@keyframes cursorPulse {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1.5);
+    }
+}
+</style>
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+
+    <!-- Main Content -->
+    <header class="cineflix-header">
+        <h1 class="cineflix-title">CineFlix Hub</h1>
+    </header>
+    <main>
+        <div class="movies-container">
+            <div class="movie-card" data-trailer="https://www.youtube.com/embed/w-Xe8gLBc5I">
+                <img src="images/download (1).jpeg" alt="Sacred Games Poster">
+                <h3>Sacred Games (2018)</h3>
+                <p>An epic thriller exploring Mumbai's underworld.</p>
+            </div>
+            <div class="movie-card" data-trailer="https://www.youtube.com/embed/Di310WS8zLk">
+                <img src="images/download.jpeg" alt="Wednesday Poster">
+                <h3>Wednesday (2022)</h3>
+                <p>A quirky mystery starring Wednesday Addams.</p>
+            </div>
+            <div class="movie-card" data-trailer="https://www.youtube.com/embed/_InqQJRqGW4">
+                <a href="https://www.youtube.com/embed/_InqQJRqGW4" target="_blank">
+                    <img src="images/download (2).jpeg" alt="Money Heist Poster">
+                </a>
+                <img src="images/download (2).jpeg" alt="Money Heist Poster">
+                <h3>Money Heist (2017)</h3>
+                <p>A thrilling heist drama led by the Professor.</p>
+            </div>
+            <!-- Animal movie card moved to last position -->
+            <div class="movie-card" data-trailer="https://www.youtube.com/embed/8FkLRUJj-o0?start=52">
+                <img src="images/download (4).jpeg" alt="Animal Poster">
+                <h3>Animal (2024)</h3>
+                <p>A gripping tale of family, revenge, and redemption.</p>
+            </div>
+        </div>
+
+        <!-- Trailer Modal -->
+        <div class="trailer-modal" id="trailerModal">
+            <div class="modal-content">
+                <iframe id="trailerFrame" src="" frameborder="0" allowfullscreen></iframe>
+                <button class="close-btn" onclick="closeTrailer()">Close</button>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>© 2024 CineFlix Hub. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js" defer></script>
+</body>
+</html>
+<script>
+    const cursor = document.querySelector('.cursor');
+document.addEventListener('mousemove', (e) => {
+    cursor.style.top = `${e.clientY}px`;
+    cursor.style.left = `${e.clientX}px`;
+});
+
+// Trailer Modal Logic
+const trailerModal = document.getElementById('trailerModal');
+const trailerFrame = document.getElementById('trailerFrame');
+
+document.querySelectorAll('.movie-card').forEach((card) => {
+    card.addEventListener('click', () => {
+        const trailerUrl = card.getAttribute('data-trailer');
+        trailerFrame.src = trailerUrl;
+        trailerModal.classList.add('active');
+    });
+});
+
+function closeTrailer() {
+    trailerFrame.src = '';
+    trailerModal.classList.remove('active');
+}
+</script>
